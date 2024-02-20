@@ -114,10 +114,9 @@ public abstract class Vehicle {
 	
 	@Override
 	public String toString() {
-		return "Vehicle [brand=" + brand + ", make=" + make + ", modelYear=" + modelYear + ", price=" + price
-				+ ", color=" + color + ", fueltype=" + fueltype + ", mileage=" + mileage + ", mass=" + mass
-				+ ", cylinders=" + cylinders + ", gasTankCapacity=" + gasTankCapacity + ", startType=" + startType
-				+ "]";
+		return "Brand = " + brand + ", Make = " + make + ", ModelYear = " + modelYear + ", Price = " + price
+				+ ", Color = " + color + ", FuelType = " + fueltype + ", Mileage = " + mileage + ", Mass = " + mass
+				+ ", Cylinders = " + cylinders + ", GasTankCapacity = " + gasTankCapacity + ", StartType = " + startType;
 	}
 	
 	
