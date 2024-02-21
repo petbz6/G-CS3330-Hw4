@@ -14,5 +14,9 @@ public class Main {
         }
         
         initialize.displayAllCarInformation();
+        initialize.displayAllTruckInformation();
+        initialize.displayAllSUVInformation();
+        initialize.displayAllMotorBikeInformation();
+        initialize.displayAllVehicleInformation();
     }
 }
