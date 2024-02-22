@@ -229,12 +229,27 @@ public class VehicleManager {
 //   public int getNumberOfVehichlesByType(Class clazz) {
 //	   
 //   }
-//   public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
-//	   
-//   }
-//   public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-//	   
-//   }
+
+   public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+   	   Vehicle highest = vehicleList.get(0);
+   	   for(Vehicle v: vehicleList) {
+   		   if(v.calculateMaintenaceCost(distance) > highest.calculateMaintenaceCost(distance)) {
+   			   highest = v;
+   		   }
+   	   }
+   	   return highest;
+   }
+   
+   public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+   	   Vehicle lowest = vehicleList.get(0);
+   	   for(Vehicle v: vehicleList) {
+   		   if(v.calculateMaintenaceCost(distance) < lowest.calculateMaintenaceCost(distance)) {
+   			   lowest = v;
+   		   }
+   	   }
+   	   return lowest;
+   }
+	
    public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
    	   ArrayList<Vehicle> highestFuel = new ArrayList<>();
    	   for(Vehicle v: vehicleList) {
