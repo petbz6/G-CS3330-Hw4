@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class VehicleManager {
    ArrayList<Vehicle> vehicleList = new ArrayList<>();
    private static String vehicleFilePath = "src/showroom/vehicleList.csv";
-  
+   private final static double distance = 300;
+   private final static double fuelPrice = 3.25;
   
    public boolean initializeStock() {
        try {
@@ -67,8 +70,8 @@ public class VehicleManager {
         		   System.out.println("Car " + carCount);
         		   System.out.println(car.toString()); 
         		   System.out.println("Start Type: " + car.getStartType());
-        		   System.out.println("Maintenance Cost: " + car.calculateMaintenaceCost(20000));
-        		   System.out.println("Fuel Efficiency: " + car.calculateFuelEfficiency(1000, 100));
+        		   System.out.println("Maintenance Cost: " + car.calculateMaintenaceCost(distance));
+        		   System.out.println("Fuel Efficiency: " + car.calculateFuelEfficiency(distance, fuelPrice));
         		   car.startEngine(); 
         		   System.out.println();
         	   } catch(Exception e) {
@@ -89,8 +92,8 @@ public class VehicleManager {
         		   System.out.println("Truck " + truckCount);
         		   System.out.println(truck.toString()); 
         		   System.out.println("Start Type: " + truck.getStartType());
-        		   System.out.println("Maintenance Cost: " + truck.calculateMaintenaceCost(20000));
-        		   System.out.println("Fuel Efficiency: " + truck.calculateFuelEfficiency(1000, 100));
+        		   System.out.println("Maintenance Cost: " + truck.calculateMaintenaceCost(distance));
+        		   System.out.println("Fuel Efficiency: " + truck.calculateFuelEfficiency(distance, fuelPrice));
         		   truck.startEngine(); 
         		   System.out.println();
         	   	} catch(Exception e) {
@@ -111,8 +114,8 @@ public class VehicleManager {
         		   System.out.println("SUV " + suvCount);
         		   System.out.println(suv.toString()); 
         		   System.out.println("Start Type: " + suv.getStartType());
-        		   System.out.println("Maintenance Cost: " + suv.calculateMaintenaceCost(20000));
-        		   System.out.println("Fuel Efficiency: " + suv.calculateFuelEfficiency(1000, 100));
+        		   System.out.println("Maintenance Cost: " + suv.calculateMaintenaceCost(distance));
+        		   System.out.println("Fuel Efficiency: " + suv.calculateFuelEfficiency(distance, fuelPrice));
         		   suv.startEngine(); 
         		   System.out.println();
         	   	} catch(Exception e) {
@@ -134,8 +137,8 @@ public class VehicleManager {
         		   System.out.println("Motorbike " + bikeCount);
         		   System.out.println(bike.toString()); 
         		   System.out.println("Start Type: " + bike.getStartType());
-        		   System.out.println("Maintenance Cost: " + bike.calculateMaintenaceCost(20000));
-        		   System.out.println("Fuel Efficiency: " + bike.calculateFuelEfficiency(1000, 100));
+        		   System.out.println("Maintenance Cost: " + bike.calculateMaintenaceCost(distance));
+        		   System.out.println("Fuel Efficiency: " + bike.calculateFuelEfficiency(distance, fuelPrice));
         		   bike.startEngine(); 
         		   System.out.println();
         	   } catch(Exception e) {
@@ -154,8 +157,8 @@ public class VehicleManager {
     		   System.out.println("Vehicle " + vehicleCount);
     		   System.out.println(v.toString()); 
     		   System.out.println("Start Type: " + v.getStartType());
-    		   System.out.println("Maintenance Cost: " + v.calculateMaintenaceCost(20000));
-    		   System.out.println("Fuel Efficiency: " + v.calculateFuelEfficiency(1000, 100));
+    		   System.out.println("Maintenance Cost: " + v.calculateMaintenaceCost(distance));
+    		   System.out.println("Fuel Efficiency: " + v.calculateFuelEfficiency(distance, fuelPrice));
     		   v.startEngine(); 
     		   System.out.println();
     	   } catch(Exception e) {
@@ -223,75 +226,25 @@ public class VehicleManager {
            return false;
        }
    }
-//   private boolean isVehicleType(Vehicle v, Class clazz) {
-//	   
-//   }
-//   public int getNumberOfVehichlesByType(Class clazz) {
-//	   
-//   }
-
-   public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
-   	   Vehicle highest = vehicleList.get(0);
-   	   for(Vehicle v: vehicleList) {
-   		   if(v.calculateMaintenaceCost(distance) > highest.calculateMaintenaceCost(distance)) {
-   			   highest = v;
-   		   }
-   	   }
-   	   return highest;
+   
+   private boolean isVehicleType(Vehicle v, Class clazz) {
+       return clazz.isInstance(v);
    }
    
-   public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-   	   Vehicle lowest = vehicleList.get(0);
-   	   for(Vehicle v: vehicleList) {
-   		   if(v.calculateMaintenaceCost(distance) < lowest.calculateMaintenaceCost(distance)) {
-   			   lowest = v;
-   		   }
-   	   }
-   	   return lowest;
-   }
-	
-   public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
-   	   ArrayList<Vehicle> highestFuel = new ArrayList<>();
-   	   for(Vehicle v: vehicleList) {
-   		   if(highestFuel.isEmpty() == true) {
-   			   highestFuel.add(v);
-   		   }
-   		   if(v.calculateFuelEfficiency(distance, fuelPrice) == highestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
-   			   highestFuel.add(v);
-   		   }
-   		   else if(v.calculateFuelEfficiency(distance, fuelPrice) > highestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
-   			   highestFuel.clear();
-   			   highestFuel.add(v);
-   		   }
-   	   }
-   	   return highestFuel;
-   }
-	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
-   	   ArrayList<Vehicle> lowestFuel = new ArrayList<>();
-   	   for(Vehicle v: vehicleList) {
-   		   if(lowestFuel.isEmpty() == true) {
-   			   lowestFuel.add(v);
-   		   }
-   		   if(v.calculateFuelEfficiency(distance, fuelPrice) == lowestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
-   			   lowestFuel.add(v);
-   		   }
-   		   else if(v.calculateFuelEfficiency(distance, fuelPrice) < lowestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
-   			   lowestFuel.clear();
-   			   lowestFuel.add(v);
-   		   }
-   	   }
-   	   return lowestFuel;
-   	}
-   	
-   	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
-   		double average = 0.0;
-   		int total = 0;
-   		for(Vehicle v: vehicleList) {
-   			if(v instanceof SUV)
-   			average = average + v.calculateFuelEfficiency(distance, fuelPrice);
-   			total = total + 1;
-   		}
-   		average = average/total;
-   		return average;
-   	}
+
+   Truck checkTruck = new Truck("Volvo", "VNL300", 2022, 120000.0, VehicleColor.WHITE, FuelType.DIESEL, 18000.0, 5.0, 16, 50.0, StartMechanism.KEYSTART);
+   boolean isTruck = isVehicleType(checkTruck, Truck.class);
+
+   
+   public int getNumberOfVehiclesByType(Class clazz) {
+	    int count = 0;
+	    for (Vehicle vehicle : vehicleList) {
+	        if (isVehicleType(vehicle, clazz)) {
+	            count++;
+	        }
+	    }
+	    return count;
+	    
+	}
+
 }
