@@ -19,8 +19,14 @@ public class Main {
         initialize.displayAllMotorBikeInformation();
         initialize.displayAllVehicleInformation();
         
-//        Car testVehicle = new Car("brand", "make", 2009, 100.6, VehicleColor.BLACK, FuelType.DIESEL, 100.22, 23932.23, 233, 3923.23, StartMechanism.KEYSTART);
-//        initialize.addVehicle(testVehicle);
-//        initialize.saveVehicleList();
+        Car testVehicle = new Car("brand", "make", 2009, 100.6, VehicleColor.BLACK, FuelType.DIESEL, 100.22, 23932.23, 233, 3923.23, StartMechanism.KEYSTART);
+        initialize.addVehicle(testVehicle);
+        initialize.saveVehicleList();
+        
+        initialize.displayAllCarInformation();
+        initialize.displayAllTruckInformation();
+        initialize.displayAllSUVInformation();
+        initialize.displayAllMotorBikeInformation();
+        initialize.displayAllVehicleInformation();
     }
 }
