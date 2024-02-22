@@ -12,12 +12,12 @@ public class Car extends Vehicle {
        	  car.getPrice(),
        	  car.getColor(),
        	  car.getFueltype(),
-             car.getMileage(),
-             car.getMass(),
-             car.getCylinders(),
-             car.getGasTankCapacity(),
-             car.getStartType()
-             );
+          car.getMileage(),
+          car.getMass(),
+          car.getCylinders(),
+          car.getGasTankCapacity(),
+          car.getStartType()
+          );
    }
 	@Override
 	public double calculateMaintenaceCost(double distance) {
