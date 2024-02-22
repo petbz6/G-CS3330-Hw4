@@ -164,5 +164,84 @@ public class VehicleManager {
        }
        
    }
-  
+   
+   public boolean removeVehicle(Vehicle vehicle) {
+	   for(Vehicle v : vehicleList) {
+		   if(v == vehicle) {
+			   vehicleList.remove(v);
+            return true;
+         }
+      }
+	   return false;
+   }
+   
+   public boolean addVehicle(Vehicle vehicle) {
+      if(vehicle != null) {
+		   vehicleList.add(vehicle);
+		   return true;
+      }
+      return false;
+   }
+   public boolean saveVehicleList() {
+       try (FileWriter writer = new FileWriter(vehicleFilePath)) {
+           String[] headers = { "Type", "Model", "Make", "ModelYear", "Price", "Color", "FuelType", "Mileage", "Mass", "Cylinders", "GasTankCapacity", "StartType" };
+           for (int i = 0; i < headers.length; i++) {
+               writer.append(headers[i]);
+               if (i < headers.length - 1) {
+                   writer.append(", ");
+               }
+           }
+           writer.append(System.getProperty("line.separator"));
+
+           for (Vehicle v : vehicleList) {
+               if (v instanceof Car) {
+                   writer.write("Car, " + v.getBrand() + "," + v.getMake() + "," + v.getModelYear() + "," + v.getPrice() + "," + v.getColor()
+                   + "," + v.getFueltype() + "," + v.getMileage() + "," + v.getMass() + "," + v.getCylinders()
+                   + "," + v.getGasTankCapacity() + "," + v.getStartType() + System.getProperty("line.separator"));
+               } else if (v instanceof MotorBike) {
+                   writer.write("MotorBike, " + v.getBrand() + "," + v.getMake() + "," + v.getModelYear() + "," + v.getPrice() + ","+ v.getColor()
+                   + "," + v.getFueltype() + "," + v.getMileage() + "," + v.getMass() + "," + v.getCylinders()
+                   + "," + v.getGasTankCapacity() + "," + v.getStartType() + System.getProperty("line.separator"));
+               } else if(v instanceof SUV){
+                   writer.write("SUV, " + v.getBrand() + "," + v.getMake() + "," + v.getModelYear() + "," + v.getPrice() + "," + v.getColor() + ","
+               + v.getFueltype() + "," + v.getMileage() + "," + v.getMass() + "," + v.getCylinders() + ","
+                		   + v.getGasTankCapacity() + "," + v.getStartType() + System.getProperty("line.separator"));
+               } else if(v instanceof Truck){
+                   writer.write("Truck, " + v.getBrand() + "," + v.getMake() + "," + v.getModelYear() + "," + v.getPrice() + "," + v.getColor()
+                   + "," + v.getFueltype() + "," + v.getMileage() + "," + v.getMass() + "," + v.getCylinders()
+                   + "," + v.getGasTankCapacity() + "," + v.getStartType() + System.getProperty("line.separator"));
+               } else {
+                   writer.write("Vehicle, " + v.getBrand() + "," + v.getMake() + "," + v.getModelYear() + "," + v.getPrice() + "," + v.getColor()
+                   + "," + v.getFueltype() + "," + v.getMileage() + "," + v.getMass() + "," + v.getCylinders()
+                   	+ "," + v.getGasTankCapacity() + "," + v.getStartType() + System.getProperty("line.separator"));
+               }
+           }
+           return true;
+       } catch (IOException e) {
+           System.out.println("An error has occurred");
+           e.printStackTrace();
+           return false;
+       }
+   }
+//   private boolean isVehicleType(Vehicle v, Class clazz) {
+//	   
+//   }
+//   public int getNumberOfVehichlesByType(Class clazz) {
+//	   
+//   }
+//   public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+//	   
+//   }
+//   public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+//	   
+//   }
+//   public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
+//	   
+//   }
+//   public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
+//	   
+//   }
+//   public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+//	   
+//   }
 }
