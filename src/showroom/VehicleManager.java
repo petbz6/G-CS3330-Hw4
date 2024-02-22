@@ -235,13 +235,48 @@ public class VehicleManager {
 //   public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
 //	   
 //   }
-//   public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
-//	   
-//   }
-//   public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
-//	   
-//   }
-//   public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
-//	   
-//   }
+   public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice){
+   	   ArrayList<Vehicle> highestFuel = new ArrayList<>();
+   	   for(Vehicle v: vehicleList) {
+   		   if(highestFuel.isEmpty() == true) {
+   			   highestFuel.add(v);
+   		   }
+   		   if(v.calculateFuelEfficiency(distance, fuelPrice) == highestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
+   			   highestFuel.add(v);
+   		   }
+   		   else if(v.calculateFuelEfficiency(distance, fuelPrice) > highestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
+   			   highestFuel.clear();
+   			   highestFuel.add(v);
+   		   }
+   	   }
+   	   return highestFuel;
+   }
+	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice){
+   	   ArrayList<Vehicle> lowestFuel = new ArrayList<>();
+   	   for(Vehicle v: vehicleList) {
+   		   if(lowestFuel.isEmpty() == true) {
+   			   lowestFuel.add(v);
+   		   }
+   		   if(v.calculateFuelEfficiency(distance, fuelPrice) == lowestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
+   			   lowestFuel.add(v);
+   		   }
+   		   else if(v.calculateFuelEfficiency(distance, fuelPrice) < lowestFuel.get(0).calculateFuelEfficiency(distance, fuelPrice)) {
+   			   lowestFuel.clear();
+   			   lowestFuel.add(v);
+   		   }
+   	   }
+   	   return lowestFuel;
+   	}
+   	
+   	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+   		double average = 0.0;
+   		int total = 0;
+   		for(Vehicle v: vehicleList) {
+   			if(v instanceof SUV)
+   			average = average + v.calculateFuelEfficiency(distance, fuelPrice);
+   			total = total + 1;
+   		}
+   		average = average/total;
+   		return average;
+   	}
 }
