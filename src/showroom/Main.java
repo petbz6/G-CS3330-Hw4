@@ -28,5 +28,10 @@ public class Main {
         initialize.displayAllSUVInformation();
         initialize.displayAllMotorBikeInformation();
         initialize.displayAllVehicleInformation();
+        System.out.println(initialize.getAverageFuelEfficiencyOfSUVs(10,10));
+        System.out.println(initialize.getVehicleWithLowestMaintenanceCost(10));
+        System.out.println(initialize.getVehicleWithHighestMaintenanceCost(10));
+        System.out.println(initialize.getVehicleWithLowestFuelEfficiency(10, 10));
+        System.out.println(initialize.getVehicleWithHighestFuelEfficiency(10, 10));
     }
 }
