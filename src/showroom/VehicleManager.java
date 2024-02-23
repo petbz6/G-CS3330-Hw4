@@ -1,6 +1,8 @@
 package showroom;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -246,5 +248,58 @@ public class VehicleManager {
 	    return count;
 	    
 	}
+   public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
+	   ArrayList<Vehicle> highestCost = new ArrayList<>();
+	   double Maximum = -1;
+	   
+	   for (Vehicle vehicle: vehicleList) {
+		   double cost = vehicle.calculateMaintenaceCost(distance);
+		   if (cost > Maximum) {
+			   highestCost.clear();
+			   highestCost.add(vehicle);
+			   
+		   }
+		   else
+		   {
+			   if (cost == Maximum) {
+				   highestCost.add(vehicle);
+			   }
+		   }
+		   
+	   }
+	   if (highestCost.isEmpty()) {
+		   return null;
+	   }
+	   Random random = new Random();
+	   int randomIndex = random.nextInt(highestCost.size());
+	   return highestCost.get(randomIndex);
+   }
+   
+   public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
+	   ArrayList<Vehicle> lowestCost = new ArrayList<>();
+	   double Minimum = -1;
+	   
+	   for (Vehicle vehicle: vehicleList) {
+		   double cost = vehicle.calculateMaintenaceCost(distance);
+		   if (cost < Minimum) {
+			   lowestCost.clear();
+			   lowestCost.add(vehicle);
+			   
+		   }
+		   else
+		   {
+			   if (cost == Minimum) {
+				   lowestCost.add(vehicle);
+			   }
+		   }
+		   
+	   }
+	   if (lowestCost.isEmpty()) {
+		   return null;
+	   }
+	   Random random = new Random();
+	   int randomIndex = random.nextInt(lowestCost.size());
+	   return lowestCost.get(randomIndex);
+   }
 
 }

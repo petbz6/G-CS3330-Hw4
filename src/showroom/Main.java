@@ -40,5 +40,10 @@ public class Main {
 
         int numberOfMotorBikes = initialize.getNumberOfVehiclesByType(MotorBike.class);
         System.out.println("Number of MotorBikes: " + numberOfMotorBikes);
+        
+        Vehicle randomVehicle = initialize.getVehicleWithHighestMaintenanceCost(50);
+        
+        System.out.println(vehicle.brand);
+        System.out.println("Is the vehicle brand with the highest maintenance cost");
     }
 }
