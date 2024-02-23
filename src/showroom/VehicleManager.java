@@ -276,30 +276,32 @@ public class VehicleManager {
    }
    
    public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-	   ArrayList<Vehicle> lowestCost = new ArrayList<>();
-	   double Minimum = -1;
-	   
-	   for (Vehicle vehicle: vehicleList) {
-		   double cost = vehicle.calculateMaintenaceCost(distance);
-		   if (cost < Minimum) {
-			   lowestCost.clear();
-			   lowestCost.add(vehicle);
-			   
-		   }
-		   else
-		   {
-			   if (cost == Minimum) {
-				   lowestCost.add(vehicle);
-			   }
-		   }
-		   
-	   }
-	   if (lowestCost.isEmpty()) {
-		   return null;
-	   }
-	   Random random = new Random();
-	   int randomIndex = random.nextInt(lowestCost.size());
-	   return lowestCost.get(randomIndex);
-   }
+	    if (vehicleList.isEmpty()) {
+	        return null;
+	    }
+
+	    double minimum = vehicleList.get(0).calculateMaintenaceCost(distance);
+	    ArrayList<Vehicle> lowestCostVehicles = new ArrayList<>();
+	    lowestCostVehicles.add(vehicleList.get(0)); 
+
+
+	    for (int i = 1; i < vehicleList.size(); ++i) {
+	        double cost = vehicleList.get(i).calculateMaintenaceCost(distance);
+	        if (cost < minimum) {
+
+	            lowestCostVehicles.clear();
+	            lowestCostVehicles.add(vehicleList.get(i));
+	            minimum = cost;
+	        } else if (cost == minimum) {
+
+	            lowestCostVehicles.add(vehicleList.get(i));
+	        }
+	    }
+
+
+	    Random random = new Random();
+	    int randomIndex = random.nextInt(lowestCostVehicles.size());
+	    return lowestCostVehicles.get(randomIndex);
+	}
 
 }
