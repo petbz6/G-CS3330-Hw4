@@ -304,4 +304,70 @@ public class VehicleManager {
 	    return lowestCostVehicles.get(randomIndex);
 	}
 
+   public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
+	   ArrayList<Vehicle> highestFuelEfficiency = new ArrayList<>();
+	   double Maximum = -1;
+	   
+	   for (Vehicle vehicle: vehicleList) {
+		   double fuelEfficiency = vehicle.calculateFuelEfficiency(distance, fuelPrice);
+		   if (fuelEfficiency > Maximum) {
+			   highestFuelEfficiency.clear();
+			   highestFuelEfficiency.add(vehicle);
+			   
+		   }
+		   else
+		   {
+			   if (fuelEfficiency == Maximum) {
+				   highestFuelEfficiency.add(vehicle);
+			   }
+		   }
+		   
+	   }
+	   if (highestFuelEfficiency.isEmpty()) {
+		   return null;
+	   }
+	   return highestFuelEfficiency;
+   }
+
+   public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice) {
+	   ArrayList<Vehicle> lowestFuelEfficiency = new ArrayList<>();
+	   double minimum = vehicleList.get(0).calculateFuelEfficiency(distance, fuelPrice);
+	   
+	   for (Vehicle vehicle: vehicleList) {
+		   double fuelEfficiency = vehicle.calculateFuelEfficiency(distance, fuelPrice);
+		   if (fuelEfficiency < minimum) {
+			   lowestFuelEfficiency.clear();
+			   lowestFuelEfficiency.add(vehicle);
+			   
+		   }
+		   else
+		   {
+			   if (fuelEfficiency == minimum) {
+				   lowestFuelEfficiency.add(vehicle);
+			   }
+		   }
+		   
+	   }
+	   if (lowestFuelEfficiency.isEmpty()) {
+		   return null;
+	   }
+	   return lowestFuelEfficiency;
+   }
+   
+   public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
+	   double averageFuelEfficiency = 0;
+	   int count = 0;
+	   double fuelEfficiency = 0;
+	   for (Vehicle vehicle : vehicleList) {
+		   if (isVehicleType(vehicle, SUV.class)) {
+			   	fuelEfficiency += vehicle.calculateFuelEfficiency(distance, fuelPrice);
+			   	System.out.println(fuelEfficiency);
+	            count++;
+	        }
+	    }
+	   	System.out.println(count);
+	    averageFuelEfficiency = (fuelEfficiency/count);
+	    return averageFuelEfficiency;
+   }
+   
 }
